@@ -27,7 +27,7 @@ import ubuntusoftware
 import editor
 import cheese
 import setting
-#import maze_u
+import maze_u
 #---------------
  
 
@@ -86,68 +86,68 @@ def tick():
 tick()
 
 #----------------------------------------------------------------------------------------
-photo1 = PhotoImage(file = "/home/naina/naina_python/abcd.png")
+photo1 = PhotoImage(file = "picss/abcd.png")
 photoimage1 = photo1.subsample(4, 4)
 
-photo2 = PhotoImage(file = "/home/naina/naina_python/download.png")
+photo2 = PhotoImage(file = "picss/download.png")
 photoimage2 = photo2.subsample(5, 5)
 
-photo3 = PhotoImage(file = "/home/naina/naina_python/ter.png")
+photo3 = PhotoImage(file = "picss/ter.png")
 photoimage3 = photo3.subsample(12, 12)
 
-photo4 = PhotoImage(file = "/home/naina/naina_python/shut.png")
+photo4 = PhotoImage(file = "picss/shut.png")
 photoimage4 = photo4.subsample(5, 5)
 
-photo5 = PhotoImage(file = "/home/naina/naina_python/restart1.png")
+photo5 = PhotoImage(file = "picss/restart1.png")
 photoimage5 = photo5.subsample(4, 4)
 
-photo6 = PhotoImage(file = "/home/naina/naina_python/amazon.png")
+photo6 = PhotoImage(file = "picss/amazon.png")
 photoimage6 = photo6.subsample(16, 16)
 
-photo7 = PhotoImage(file = "/home/naina/naina_python/flipkart.png")
+photo7 = PhotoImage(file = "picss/flipkart.png")
 photoimage7 = photo7.subsample(4, 4)
 
-photo8 = PhotoImage(file = "/home/naina/naina_python/calculator1.png")
+photo8 = PhotoImage(file = "picss/calculator1.png")
 photoimage8 = photo8.subsample(4, 4)
 
-photo9 = PhotoImage(file = "/home/naina/naina_python/turtle.png")
+photo9 = PhotoImage(file = "picss/turtle.png")
 photoimage9 = photo9.subsample(4, 4)
 
-photo10 = PhotoImage(file = "/home/naina/naina_python/screenshot1.png")
+photo10 = PhotoImage(file = "picss/screenshot1.png")
 photoimage10 = photo10.subsample(8, 8)
 
-photo11 = PhotoImage(file = "/home/naina/naina_python/maze1.png")
+photo11 = PhotoImage(file = "picss/maze1.png")
 photoimage11 = photo11.subsample(10, 10)
 
-photo12 = PhotoImage(file = "/home/naina/naina_python/firefox.png")
+photo12 = PhotoImage(file = "picss/firefox.png")
 photoimage12 = photo12.subsample(25, 25)
 
-photo13 = PhotoImage(file = "/home/naina/naina_python/chrome.png")
+photo13 = PhotoImage(file = "picss/chrome.png")
 photoimage13 = photo13.subsample(6, 6)
 
-photo14 = PhotoImage(file = "/home/naina/naina_python/vim.png")
+photo14 = PhotoImage(file = "picss/vim.png")
 photoimage14 = photo14.subsample(6, 6)
 
-photo15 = PhotoImage(file = "/home/naina/naina_python/editor.png")
+photo15 = PhotoImage(file = "picss/editor.png")
 photoimage15 = photo15.subsample(6, 6)
 
-photo16 = PhotoImage(file = "/home/naina/naina_python/vlc.png")
+photo16 = PhotoImage(file = "picss/vlc.png")
 photoimage16 = photo16.subsample(6, 6)
 
-photo17 = PhotoImage(file = "/home/naina/naina_python/software.png")
+photo17 = PhotoImage(file = "picss/software.png")
 photoimage17 = photo17.subsample(10, 10)
 
-photo18 = PhotoImage(file = "/home/naina/naina_python/fileman.png")
+photo18 = PhotoImage(file = "picss/fileman.png")
 photoimage18 = photo18.subsample(6, 6)
 
-photo19 = PhotoImage(file = "/home/naina/naina_python/cheese.png")
+photo19 = PhotoImage(file = "picss/cheese.png")
 photoimage19 = photo19.subsample(8, 8)
 
-photo20 = PhotoImage(file = "/home/naina/naina_python/shotwell.png")
+photo20 = PhotoImage(file = "picss/shotwell.png")
 photoimage20 = photo20.subsample(10, 10)
 
 #trash----------------
-photo21 = PhotoImage(file = "/home/naina/naina_python/shotwell.png")
+photo21 = PhotoImage(file = "picss/shotwell.png")
 photoimage21 = photo21.subsample(10, 10)
 #------------------------------------------------------------------------------------------------
 
@@ -317,16 +317,12 @@ def new():
 
 def new2():
     root2 = Toplevel(root)
+    
     button1 = Button(root2, text="age", fg="red", image=photoimage1, command=aging.main)
     button1.grid(row = 5, column = 6,padx = 50,pady = 10) 
     messageVar1 = Message(root2, text = "get your age",width = 150) 
     messageVar1.config(bg='lightgreen')
     messageVar1.grid(row = 6, column = 6,padx = 50,pady = 10) 
-
-    #------------------------------------------------------------
-
-
- 
     #---------------------------------------------------------------------------
 
     button9 = Button(root2, text="restart", fg="red" , image=photoimage9,command = snake.main)
@@ -337,7 +333,7 @@ def new2():
 
     #---------------------------------------------------------------------------
 
-    button11 = Button(root2, text="maze u", fg="red" , image=photoimage11,command = snake.main)
+    button11 = Button(root2, text="maze u", fg="red" , image=photoimage11,command = maze_u.main)
     button11.grid(row = 5, column = 13,padx = 50,pady = 10) 
     messageVar11 = Message(root2, text = "maze u",width = 100) 
     messageVar11.config(bg='lightgreen')
