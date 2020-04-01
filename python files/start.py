@@ -27,7 +27,7 @@ import ubuntusoftware
 import editor
 import cheese
 import setting
-#import maze_u
+import maze_u
 #---------------
  
 
@@ -333,7 +333,7 @@ def new2():
 
     #---------------------------------------------------------------------------
 
-    button11 = Button(root2, text="maze u", fg="red" , image=photoimage11,command = snake.main)
+    button11 = Button(root2, text="maze u", fg="red" , image=photoimage11,command = maze_u.main)
     button11.grid(row = 5, column = 13,padx = 50,pady = 10) 
     messageVar11 = Message(root2, text = "maze u",width = 100) 
     messageVar11.config(bg='lightgreen')
