@@ -3,21 +3,19 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[dev-packages]
-
 [packages]
 pyaudio = "*"
 kivy = "*"
 button = "*"
 pillow = "*"
-glob = "*"
-opencv = "*"
+glob2 = "*"
+opencv-python = "*"
 pygame = "*"
-calculatorfunction = "*"
 speechrecognition = "*"
 numpy = "*"
-grapics = "*"
-graphics = "*"
 
 [requires]
 python_version = "3.7"
+
+[dev-packages]
+autopep8 = "*"

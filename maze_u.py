@@ -1,13 +1,11 @@
-import pygame, random, sys
-from pygame.locals import *
+import pygame
+import random
+import sys
 
 import numpy as np
 
 from time import time,sleep
 from random import randint as r
-
-
-pygame.init()
 
 window_height = 900
 window_width = 900
@@ -16,13 +14,55 @@ blue = (0, 255, 255)
 black = (0, 0, 0)
 white = (0, 0, 255)
 
+n = 9  # represents no. of side squares(n*n total squares)
+scrx = n*100
+scry = n*100
+background = (0, 0, 0)  # used to clear screen while rendering
+# creating a screen using Pygame
+screen = None
+colors = [(0, 0, 0) for i in range(n**2)]
+reward = np.zeros((n, n))
+terminals = []
+penalities = 10
+while penalities != 0:
+    i = r(0, n-1)
+    j = r(0, n-1)
+    if reward[i, j] == 0 and [i, j] != [0, 0] and [i, j] != [n-1, n-1]:
+        reward[i, j] = -1
+        penalities -= 1
+        colors[n*i+j] = (255, 0, 255)
+        terminals.append(n*i+j)
+reward[n-1, n-1] = 1
+colors[n**2 - 1] = (255, 255, 0)
+terminals.append(n**2 - 1)
+
+Q = np.zeros((n**2, 4))  # Initializing Q-Table
+actions = {"up": 0, "down": 1, "left": 2, "right": 3}  # possible actions
+states = {}
+k = 0
+for i in range(n):
+    for j in range(n):
+        states[(i, j)] = k
+        k += 1
+alpha = 0.01
+gamma = 0.9
+#-----------
+current_pos = [0, 0]
+#---------
+epsilon = 0.25
+
 def terminate():        # to end the program
     pygame.quit()
-    sys.exit()
-
 
 def load_image(imagename):
     return pygame.image.load(imagename)
+
+def drawtext(text, font, surface, x, y):        # to display text on the screen
+    textobj = font.render(text, 1, blue)
+    textrect = textobj.get_rect()
+    textrect.topleft = (x,y)
+    surface.blit(textobj, textrect)
+
 
 def waitforkey():
     while True :                                        # to wait for user to start
@@ -33,74 +73,6 @@ def waitforkey():
                 if event.key == pygame.K_ESCAPE:
                     terminate()
                 return
-
-def drawtext(text, font, surface, x, y):        # to display text on the screen
-    textobj = font.render(text, 1, blue)
-    textrect = textobj.get_rect()
-    textrect.topleft = (x,y)
-    surface.blit(textobj, textrect)
-
-mainClock = pygame.time.Clock()
-Canvas = pygame.display.set_mode((window_width, window_height))
-pygame.display.set_caption('Artificial Intelligence')
-
-font = pygame.font.SysFont("Times new Roman", 48)
-
-startimage = load_image('maze2.png')
-startimagerect = startimage.get_rect()
-startimagerect.centerx = window_width/2
-startimagerect.centery = window_height/2
-
-pygame.mixer.music.load('mario_theme.wav')
-gameover = pygame.mixer.Sound('mario_dies.wav')
-pygame.mixer.music.play(-1, 0.0)
-
-Canvas.blit(startimage, startimagerect)
-drawtext('Maze You', font, Canvas, (window_width/3 + 50), (window_height/5))
-drawtext('Click any button to continue', font, Canvas, (window_width/3.3 - 100), (window_height/1.5))
-
-pygame.display.update()
-waitforkey()
-   
-#--------------------------------------------------------------------------------------------------------
-n = 9  #represents no. of side squares(n*n total squares)
-scrx = n*100
-scry = n*100
-background = (0,0,0) #used to clear screen while rendering
-screen = pygame.display.set_mode((scrx,scry)) #creating a screen using Pygame
-colors = [(0,0,0) for i in range(n**2)] 
-reward = np.zeros((n,n))
-terminals = []
-penalities = 10
-while penalities != 0:
-    i = r(0,n-1)
-    j = r(0,n-1)
-    if reward[i,j] == 0 and [i,j] != [0,0] and [i,j] != [n-1,n-1]:
-        reward[i,j] = -1
-        penalities-=1
-        colors[n*i+j] = (255,0,255)
-        terminals.append(n*i+j)
-reward[n-1,n-1] = 1
-colors[n**2 - 1] = (255,255,0)
-terminals.append(n**2 - 1)
-
-
-Q = np.zeros((n**2,4)) #Initializing Q-Table
-actions = {"up": 0,"down" : 1,"left" : 2,"right" : 3} #possible actions
-states = {}
-k = 0
-for i in range(n):
-    for j in range(n):
-        states[(i,j)] = k
-        k+=1
-alpha = 0.01
-gamma = 0.9
-#-----------
-current_pos = [0,0]
-#---------
-epsilon = 0.25
-
-
 
 def select_action(current_state):
     global current_pos,epsilon
@@ -162,6 +134,7 @@ def episode():
             
 def layout():
     c = 0
+    global screen
     for i in range(0,scrx,100):
         for j in range(0,scry,100):
             pygame.draw.rect(screen,(0,0,255),(j,i,j+100,i+100),0)
@@ -169,9 +142,36 @@ def layout():
             c+=1
             pygame.draw.circle(screen,(25,129,230),(current_pos[1]*100 + 50,current_pos[0]*100 + 50),30,10)
 def main():
+    global screen
+    pygame.init()
+
+    mainClock = pygame.time.Clock()
+    Canvas = pygame.display.set_mode((window_width, window_height))
+    pygame.display.set_caption('Artificial Intelligence')
+
+    font = pygame.font.SysFont("Times new Roman", 48)
+
+    startimage = load_image('maze2.png')
+    startimagerect = startimage.get_rect()
+    startimagerect.centerx = window_width/2
+    startimagerect.centery = window_height/2
+
+    pygame.mixer.music.load('mario_theme.wav')
+    gameover = pygame.mixer.Sound('mario_dies.wav')
+    pygame.mixer.music.play(-1, 0.0)
+
+    Canvas.blit(startimage, startimagerect)
+    drawtext('Maze You', font, Canvas, (window_width/3 + 50), (window_height/5))
+    drawtext(
+        'Click any button to continue',
+        font, Canvas, (window_width/3.3 - 100), (window_height/1.5))
+
+    pygame.display.update()
+    waitforkey()
+
     run = True
+    screen = pygame.display.set_mode((scrx, scry))
     while run:
-        # sleep(0.3)
         screen.fill(background)
         layout()
         for event in pygame.event.get():
@@ -179,9 +179,9 @@ def main():
                 run = False
         pygame.display.flip()
         episode()
+    pygame.quit()
     pygame.mixer.music.stop()
 
-
-
-
+if __name__ == "__main__":
+    main()
 

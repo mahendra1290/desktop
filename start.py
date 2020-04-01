@@ -1,12 +1,18 @@
-#----------------------------------------------MAIN PAGE CODE-----------------------------------------
-
-
-from tkinter import *
-from tkinter import simpledialog
 import time
-import tkinter as tk
-from tkinter.colorchooser import *
-#---files-----
+
+from tkinter import simpledialog
+from tkinter import PhotoImage
+from tkinter import Button
+from tkinter import Message
+from tkinter import Toplevel
+from tkinter import Menubutton
+from tkinter import IntVar
+from tkinter import Menu
+from tkinter import Label
+from tkinter import Tk
+from tkinter import N
+from tkinter.colorchooser import askcolor
+
 import trash
 import browser
 import aging
@@ -27,9 +33,7 @@ import ubuntusoftware
 import editor
 import cheese
 import setting
-#import maze_u
-#---------------
- 
+import maze_u
 
 root = Tk()
 root.title("My Desktop")
@@ -52,7 +56,7 @@ def getColor():
     color = askcolor() 
     print(color[1])
     root.configure(background=color[1])
-tk.Button(text='Select Color', command=getColor).grid(row = 0, column = 14)
+    Button(text='Select Color', command=getColor).grid(row = 0, column = 14)
 #---------------------------------------------------------------------------------------------
 def logout():
     answer = "None"
@@ -67,7 +71,7 @@ mb.menu.add_checkbutton ( label = 'setting', command = setting.main )
 mb.menu.add_checkbutton ( label = 'logout', command = root.quit) 
 mb.grid(row = 0, column = 13) 
 
-#----------------------------------------------TIME--------------------------------------------------
+#----------------------------------------------TIME------------------------------------------------
 
 time1 = ''
 clock = Label(root,anchor = N, font=('times', 20, 'bold'), bg="pink", height = 1,width = 10)
@@ -76,7 +80,7 @@ clock.grid(row = 0, column = 12)
 
 def tick():
     global time1
-    time2 = time.strftime('%H:%M:%S')
+    time2 = time.strftime('%H : %M : %S')
     if time2 != time1:
         time1 = time2
         clock.config(text=time2)
@@ -86,68 +90,68 @@ def tick():
 tick()
 
 #----------------------------------------------------------------------------------------
-photo1 = PhotoImage(file = "/home/naina/naina_python/abcd.png")
+photo1 = PhotoImage(file = "abcd.png")
 photoimage1 = photo1.subsample(4, 4)
 
-photo2 = PhotoImage(file = "/home/naina/naina_python/download.png")
+photo2 = PhotoImage(file = "download.png")
 photoimage2 = photo2.subsample(5, 5)
 
-photo3 = PhotoImage(file = "/home/naina/naina_python/ter.png")
+photo3 = PhotoImage(file = "ter.png")
 photoimage3 = photo3.subsample(12, 12)
 
-photo4 = PhotoImage(file = "/home/naina/naina_python/shut.png")
+photo4 = PhotoImage(file = "shut.png")
 photoimage4 = photo4.subsample(5, 5)
 
-photo5 = PhotoImage(file = "/home/naina/naina_python/restart1.png")
+photo5 = PhotoImage(file = "restart1.png")
 photoimage5 = photo5.subsample(4, 4)
 
-photo6 = PhotoImage(file = "/home/naina/naina_python/amazon.png")
+photo6 = PhotoImage(file = "amazon.png")
 photoimage6 = photo6.subsample(16, 16)
 
-photo7 = PhotoImage(file = "/home/naina/naina_python/flipkart.png")
+photo7 = PhotoImage(file = "flipkart.png")
 photoimage7 = photo7.subsample(4, 4)
 
-photo8 = PhotoImage(file = "/home/naina/naina_python/calculator1.png")
+photo8 = PhotoImage(file = "calculator1.png")
 photoimage8 = photo8.subsample(4, 4)
 
-photo9 = PhotoImage(file = "/home/naina/naina_python/turtle.png")
+photo9 = PhotoImage(file = "turtle.png")
 photoimage9 = photo9.subsample(4, 4)
 
-photo10 = PhotoImage(file = "/home/naina/naina_python/screenshot1.png")
+photo10 = PhotoImage(file = "screenshot1.png")
 photoimage10 = photo10.subsample(8, 8)
 
-photo11 = PhotoImage(file = "/home/naina/naina_python/maze1.png")
+photo11 = PhotoImage(file = "maze1.png")
 photoimage11 = photo11.subsample(10, 10)
 
-photo12 = PhotoImage(file = "/home/naina/naina_python/firefox.png")
+photo12 = PhotoImage(file = "firefox.png")
 photoimage12 = photo12.subsample(25, 25)
 
-photo13 = PhotoImage(file = "/home/naina/naina_python/chrome.png")
+photo13 = PhotoImage(file = "chrome.png")
 photoimage13 = photo13.subsample(6, 6)
 
-photo14 = PhotoImage(file = "/home/naina/naina_python/vim.png")
+photo14 = PhotoImage(file = "vim.png")
 photoimage14 = photo14.subsample(6, 6)
 
-photo15 = PhotoImage(file = "/home/naina/naina_python/editor.png")
+photo15 = PhotoImage(file = "editor.png")
 photoimage15 = photo15.subsample(6, 6)
 
-photo16 = PhotoImage(file = "/home/naina/naina_python/vlc.png")
+photo16 = PhotoImage(file = "vlc.png")
 photoimage16 = photo16.subsample(6, 6)
 
-photo17 = PhotoImage(file = "/home/naina/naina_python/software.png")
+photo17 = PhotoImage(file = "software.png")
 photoimage17 = photo17.subsample(10, 10)
 
-photo18 = PhotoImage(file = "/home/naina/naina_python/fileman.png")
+photo18 = PhotoImage(file = "fileman.png")
 photoimage18 = photo18.subsample(6, 6)
 
-photo19 = PhotoImage(file = "/home/naina/naina_python/cheese.png")
+photo19 = PhotoImage(file = "cheese.png")
 photoimage19 = photo19.subsample(8, 8)
 
-photo20 = PhotoImage(file = "/home/naina/naina_python/shotwell.png")
+photo20 = PhotoImage(file = "shotwell.png")
 photoimage20 = photo20.subsample(10, 10)
 
 #trash----------------
-photo21 = PhotoImage(file = "/home/naina/naina_python/shotwell.png")
+photo21 = PhotoImage(file = "shotwell.png")
 photoimage21 = photo21.subsample(10, 10)
 #------------------------------------------------------------------------------------------------
 
@@ -201,7 +205,6 @@ messageVar12.grid(row = 12, column = 5,padx = 50,pady = 10)
 def new():
     root1 = Toplevel(root)
     
-   
     button2 = Button( root1,text="google", fg="red",image=photoimage2, command = browser.main)
     button2.grid(row = 5, column = 7,padx = 50,pady = 10) 
     messageVar2 = Message(root1, text = "Google it",width = 100)
@@ -257,7 +260,7 @@ def new():
 
     #-----------------------------------------------------------------------------
 
-    button14 = Button( root1,text="chrome", fg="red" , image=photoimage14,command = vi.main)
+    button14 = Button(root1,text="chrome", fg="red" , image=photoimage14,command = vi.main)
     button14.grid(row = 11, column = 8,padx = 50,pady = 10) 
     messageVar14 = Message(root1, text = "vi",width = 100) 
     messageVar14.config(bg='lightgreen')
@@ -278,28 +281,28 @@ def new():
     messageVar16.grid(row = 12, column = 10,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button17 = Button( root1,text="chrome", fg="red" , image=photoimage17,command = ubuntusoftware.main)
+    button17 = Button(root1,text="chrome", fg="red" , image=photoimage17,command = ubuntusoftware.main)
     button17.grid(row = 11, column = 11,padx = 50,pady = 10) 
     messageVar17 = Message(root1, text = "software",width = 100) 
     messageVar17.config(bg='lightgreen')
     messageVar17.grid(row = 12, column = 11,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button18 = Button( root1,text="chrome", fg="red" , image=photoimage18,command = filemanager.main)
+    button18 = Button(root1,text="chrome", fg="red" , image=photoimage18,command = filemanager.main)
     button18.grid(row = 11, column = 12,padx = 50,pady = 10) 
     messageVar18 = Message(root1, text = "File manager",width = 100) 
     messageVar18.config(bg='lightgreen')
     messageVar18.grid(row = 12, column = 12,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button19 = Button( root1,text="chrome", fg="red" , image=photoimage19,command = cheese.main)
+    button19 = Button(root1,text="chrome", fg="red" , image=photoimage19,command = cheese.main)
     button19.grid(row = 11, column = 13,padx = 50,pady = 10) 
     messageVar19 = Message(root1, text = "cheese",width = 100) 
     messageVar19.config(bg='lightgreen')
     messageVar19.grid(row = 12, column = 13,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button20 = Button( root1,text="chrome", fg="red" , image=photoimage20,command = shotwell.main)
+    button20 = Button(root1,text="chrome", fg="red" , image=photoimage20,command = shotwell.main)
     button20.grid(row = 13, column = 6,padx = 50,pady = 10) 
     messageVar20 = Message(root1, text = "shotwell",width = 100) 
     messageVar20.config(bg='lightgreen')
@@ -323,12 +326,6 @@ def new2():
     messageVar1.config(bg='lightgreen')
     messageVar1.grid(row = 6, column = 6,padx = 50,pady = 10) 
 
-    #------------------------------------------------------------
-
-
- 
-    #---------------------------------------------------------------------------
-
     button9 = Button(root2, text="restart", fg="red" , image=photoimage9,command = snake.main)
     button9.grid(row = 5, column = 12,padx = 50,pady = 10) 
     messageVar9 = Message(root2, text = "turtle race",width = 100) 
@@ -337,7 +334,7 @@ def new2():
 
     #---------------------------------------------------------------------------
 
-    button11 = Button(root2, text="maze u", fg="red" , image=photoimage11,command = snake.main)
+    button11 = Button(root2, text="maze u", fg="red" , image=photoimage11,command = maze_u.main)
     button11.grid(row = 5, column = 13,padx = 50,pady = 10) 
     messageVar11 = Message(root2, text = "maze u",width = 100) 
     messageVar11.config(bg='lightgreen')
