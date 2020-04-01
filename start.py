@@ -1,12 +1,18 @@
-#----------------------------------------------MAIN PAGE CODE-----------------------------------------
-
-
-from tkinter import *
-from tkinter import simpledialog
 import time
-import tkinter as tk
-from tkinter.colorchooser import *
-#---files-----
+
+from tkinter import simpledialog
+from tkinter import PhotoImage
+from tkinter import Button
+from tkinter import Message
+from tkinter import Toplevel
+from tkinter import Menubutton
+from tkinter import IntVar
+from tkinter import Menu
+from tkinter import Label
+from tkinter import Tk
+from tkinter import N
+from tkinter.colorchooser import askcolor
+
 import trash
 import browser
 import aging
@@ -28,8 +34,6 @@ import editor
 import cheese
 import setting
 import maze_u
-#---------------
- 
 
 root = Tk()
 root.title("My Desktop")
@@ -52,7 +56,7 @@ def getColor():
     color = askcolor() 
     print(color[1])
     root.configure(background=color[1])
-tk.Button(text='Select Color', command=getColor).grid(row = 0, column = 14)
+    Button(text='Select Color', command=getColor).grid(row = 0, column = 14)
 #---------------------------------------------------------------------------------------------
 def logout():
     answer = "None"
@@ -67,7 +71,7 @@ mb.menu.add_checkbutton ( label = 'setting', command = setting.main )
 mb.menu.add_checkbutton ( label = 'logout', command = root.quit) 
 mb.grid(row = 0, column = 13) 
 
-#----------------------------------------------TIME--------------------------------------------------
+#----------------------------------------------TIME------------------------------------------------
 
 time1 = ''
 clock = Label(root,anchor = N, font=('times', 20, 'bold'), bg="pink", height = 1,width = 10)
@@ -76,7 +80,7 @@ clock.grid(row = 0, column = 12)
 
 def tick():
     global time1
-    time2 = time.strftime('%H:%M:%S')
+    time2 = time.strftime('%H : %M : %S')
     if time2 != time1:
         time1 = time2
         clock.config(text=time2)
@@ -201,7 +205,6 @@ messageVar12.grid(row = 12, column = 5,padx = 50,pady = 10)
 def new():
     root1 = Toplevel(root)
     
-   
     button2 = Button( root1,text="google", fg="red",image=photoimage2, command = browser.main)
     button2.grid(row = 5, column = 7,padx = 50,pady = 10) 
     messageVar2 = Message(root1, text = "Google it",width = 100)
@@ -257,7 +260,7 @@ def new():
 
     #-----------------------------------------------------------------------------
 
-    button14 = Button( root1,text="chrome", fg="red" , image=photoimage14,command = vi.main)
+    button14 = Button(root1,text="chrome", fg="red" , image=photoimage14,command = vi.main)
     button14.grid(row = 11, column = 8,padx = 50,pady = 10) 
     messageVar14 = Message(root1, text = "vi",width = 100) 
     messageVar14.config(bg='lightgreen')
@@ -278,28 +281,28 @@ def new():
     messageVar16.grid(row = 12, column = 10,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button17 = Button( root1,text="chrome", fg="red" , image=photoimage17,command = ubuntusoftware.main)
+    button17 = Button(root1,text="chrome", fg="red" , image=photoimage17,command = ubuntusoftware.main)
     button17.grid(row = 11, column = 11,padx = 50,pady = 10) 
     messageVar17 = Message(root1, text = "software",width = 100) 
     messageVar17.config(bg='lightgreen')
     messageVar17.grid(row = 12, column = 11,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button18 = Button( root1,text="chrome", fg="red" , image=photoimage18,command = filemanager.main)
+    button18 = Button(root1,text="chrome", fg="red" , image=photoimage18,command = filemanager.main)
     button18.grid(row = 11, column = 12,padx = 50,pady = 10) 
     messageVar18 = Message(root1, text = "File manager",width = 100) 
     messageVar18.config(bg='lightgreen')
     messageVar18.grid(row = 12, column = 12,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button19 = Button( root1,text="chrome", fg="red" , image=photoimage19,command = cheese.main)
+    button19 = Button(root1,text="chrome", fg="red" , image=photoimage19,command = cheese.main)
     button19.grid(row = 11, column = 13,padx = 50,pady = 10) 
     messageVar19 = Message(root1, text = "cheese",width = 100) 
     messageVar19.config(bg='lightgreen')
     messageVar19.grid(row = 12, column = 13,padx = 50,pady = 10) 
 
     #-----------------------------------------------------------------------------
-    button20 = Button( root1,text="chrome", fg="red" , image=photoimage20,command = shotwell.main)
+    button20 = Button(root1,text="chrome", fg="red" , image=photoimage20,command = shotwell.main)
     button20.grid(row = 13, column = 6,padx = 50,pady = 10) 
     messageVar20 = Message(root1, text = "shotwell",width = 100) 
     messageVar20.config(bg='lightgreen')
@@ -322,12 +325,6 @@ def new2():
     messageVar1 = Message(root2, text = "get your age",width = 150) 
     messageVar1.config(bg='lightgreen')
     messageVar1.grid(row = 6, column = 6,padx = 50,pady = 10) 
-
-    #------------------------------------------------------------
-
-
- 
-    #---------------------------------------------------------------------------
 
     button9 = Button(root2, text="restart", fg="red" , image=photoimage9,command = snake.main)
     button9.grid(row = 5, column = 12,padx = 50,pady = 10) 

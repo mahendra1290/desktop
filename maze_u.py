@@ -182,4 +182,6 @@ def main():
     pygame.quit()
     pygame.mixer.music.stop()
 
+if __name__ == "__main__":
+    main()
 
