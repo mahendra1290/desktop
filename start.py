@@ -4,6 +4,8 @@
 from tkinter import *
 from tkinter import simpledialog
 import time
+import tkinter as tk
+from tkinter.colorchooser import *
 #---files-----
 import trash
 import browser
@@ -13,7 +15,6 @@ import fol
 import restart
 import flip
 import amo 
-import calculator
 import snake
 import screenshot
 import chrome
@@ -28,10 +29,12 @@ import cheese
 import setting
 #import maze_u
 #---------------
+ 
 
 root = Tk()
 root.title("My Desktop")
 root.geometry("5000x5000")
+root.configure(bg="maroon4")
 
 
 #-----------------------------------------------------------------------
@@ -43,11 +46,14 @@ else:
     print("You don't have a first name?")
 
 #----------------------------------------------------------------------------------------
-#scrollbar = Scrollbar(root)
-#scrollbar.grid( column = 29)
+#change color
 
-
-
+def getColor():
+    color = askcolor() 
+    print(color[1])
+    root.configure(background=color[1])
+tk.Button(text='Select Color', command=getColor).grid(row = 0, column = 14)
+#---------------------------------------------------------------------------------------------
 def logout():
     answer = "None"
 mb =  Menubutton ( root, text = answer) 
@@ -154,6 +160,9 @@ button5.grid(row = 0, column = 10)
 
 button10 = Button( text="screenshot", fg="red" , image=photoimage10,command = screenshot.main)
 button10.grid(row = 0, column = 9) 
+
+button23 = Button( text="setting", fg="red" , command = setting.main)
+button23.grid(row = 0, column = 8) 
 #-------------------------------------------------------
 
 

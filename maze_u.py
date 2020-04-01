@@ -181,7 +181,7 @@ def main():
         episode()
     pygame.mixer.music.stop()
 
-main()
+
 
 
 

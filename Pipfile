@@ -16,6 +16,8 @@ pygame = "*"
 calculatorfunction = "*"
 speechrecognition = "*"
 numpy = "*"
+grapics = "*"
+graphics = "*"
 
 [requires]
 python_version = "3.7"
