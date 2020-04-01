@@ -46,13 +46,13 @@ pygame.display.set_caption('Artificial Intelligence')
 
 font = pygame.font.SysFont("Times new Roman", 48)
 
-startimage = load_image('maze2.png')
+startimage = load_image('picss/maze2.png')
 startimagerect = startimage.get_rect()
 startimagerect.centerx = window_width/2
 startimagerect.centery = window_height/2
 
-pygame.mixer.music.load('mario_theme.wav')
-gameover = pygame.mixer.Sound('mario_dies.wav')
+pygame.mixer.music.load('audio/mario_theme.wav')
+gameover = pygame.mixer.Sound('audio/mario_dies.wav')
 pygame.mixer.music.play(-1, 0.0)
 
 Canvas.blit(startimage, startimagerect)
@@ -180,8 +180,6 @@ def main():
         pygame.display.flip()
         episode()
     pygame.mixer.music.stop()
-
-
 
 
 
