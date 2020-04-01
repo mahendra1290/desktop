@@ -53,7 +53,6 @@ epsilon = 0.25
 
 def terminate():        # to end the program
     pygame.quit()
-    sys.exit()
 
 def load_image(imagename):
     return pygame.image.load(imagename)
